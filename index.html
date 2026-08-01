@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Dearest Akka ❤️ | A Magical Surprise</title>
+  <meta name="description" content="An award-winning, emotional, cinematic, and interactive birthday surprise experience created with deep love for Akka.">
+  
+  <!-- Luxury Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/css/main.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/animations.css">
+</head>
+<body>
+  <!-- Ambient Canvas Backgrounds -->
+  <canvas id="bg-canvas" class="canvas-layer"></canvas>
+  <canvas id="fireworks-canvas" class="canvas-layer"></canvas>
+  <canvas id="cursor-canvas" class="canvas-layer"></canvas>
+
+  <!-- Ambient Light Mesh Orbs -->
+  <div class="ambient-mesh">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="ambient-orb orb-4"></div>
+  </div>
+
+  <!-- Custom Cursor Ring Follower -->
+  <div id="cursor-follower" class="cursor-follower"></div>
+
+  <!-- Screen Flash Effect for Fireworks explosions -->
+  <div id="screen-flash" class="screen-flash"></div>
+
+  <!-- Floating Audio Control Pill -->
+  <button id="music-btn" class="floating-music-btn" aria-label="Toggle Background Music" title="Toggle Background Music">
+    <div class="music-disc">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </div>
+    <div class="music-info">
+      <span class="music-label">Birthday Theme</span>
+      <div class="music-waves">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </button>
+
+  <!-- Main App Container -->
+  <main id="app-container" class="app-container">
+
+    <!-- SCREEN 1: LOADING SCREEN -->
+    <section id="screen-loading" class="screen active">
+      <div class="screen-content glass-card loading-card">
+        <div class="loader-ring-wrapper">
+          <svg class="loader-ring" viewBox="0 0 140 140">
+            <circle class="ring-bg" cx="70" cy="70" r="60"></circle>
+            <circle class="ring-progress" cx="70" cy="70" r="60" id="loading-circle"></circle>
+          </svg>
+          <div class="loader-percentage" id="loading-percent">0%</div>
+          <div class="loader-sparkle">✨</div>
+        </div>
+        <div class="loading-text-container">
+          <p id="loading-status" class="glowing-status-text">Preparing your birthday surprise...</p>
+        </div>
+        <div class="sparkle-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: NAME INPUT -->
+    <section id="screen-name" class="screen">
+      <div class="screen-content glass-card name-card">
+        <div class="luxury-badge animate-badge">
+          <span class="badge-icon">👑</span>
+          <span class="badge-text">Dedicated Surprise</span>
+        </div>
+        <h1 class="screen-title heading-cinzel">Hello Beautiful</h1>
+        <p class="screen-subtitle">Enter your name to unlock your personalized birthday journey</p>
+        
+        <form id="name-form" class="name-form" onsubmit="return false;">
+          <div class="input-wrapper">
+            <input type="text" id="name-input" class="luxury-input" placeholder="Enter your name..." autocomplete="off" value="Akka">
+            <div class="input-glow"></div>
+          </div>
+          <button type="submit" id="name-submit-btn" class="luxury-btn btn-primary glow-effect">
+            <span>Unlock Surprise</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: WELCOME SCREEN -->
+    <section id="screen-welcome" class="screen">
+      <div class="screen-content glass-card welcome-card">
+        <span class="golden-tag">A Dedicated Sisterly Journey</span>
+        <h1 class="welcome-heading heading-cinzel">Welcome, <span class="personalized-name text-gradient-gold">Akka</span> ❤️</h1>
+        <p class="welcome-quote font-serif">"Today is all about you. Every detail, every memory, and every sparkle was crafted with all my heart."</p>
+        <div class="welcome-decoration">
+          <div class="line"></div>
+          <span class="star-icon">✨</span>
+          <div class="line"></div>
+        </div>
+        <button id="welcome-next-btn" class="luxury-btn btn-gold glow-effect">
+          <span>Begin Experience</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: COUNTDOWN -->
+    <section id="screen-countdown" class="screen">
+      <div class="screen-content countdown-wrapper">
+        <div class="luxury-badge margin-bottom-md">
+          <span class="badge-icon">⏳</span>
+          <span class="badge-text">Get Ready For Magic</span>
+        </div>
+        <div id="countdown-number" class="countdown-display heading-cinzel">3</div>
+        <div class="pulse-ring"></div>
+        <p class="audio-notice-subtle">🎵 Turn up audio volume for the full cinematic music experience</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: FIREWORKS REVEAL -->
+    <section id="screen-fireworks" class="screen">
+      <div class="screen-content fireworks-reveal-card glass-card">
+        <div class="crown-badge float-crown">👑</div>
+        <h1 class="fireworks-title heading-cinzel gold-shimmer">🎉 HAPPY BIRTHDAY <span class="personalized-name">AKKA</span> 🎉</h1>
+        <p class="fireworks-subtitle font-serif">May your life shine brighter than a million stars!</p>
+        <div class="fireworks-stat-box margin-top-md">
+          <div class="stat-pill">✨ Infinite Love</div>
+          <div class="stat-pill">💖 Golden Memories</div>
+        </div>
+        <button id="fireworks-next-btn" class="luxury-btn btn-primary glow-effect margin-top-lg">
+          <span>Explore Memories</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: FLOATING BALLOONS -->
+    <section id="screen-balloons" class="screen">
+      <div class="balloons-container" id="balloons-container"></div>
+      <div class="screen-content glass-card overlay-card">
+        <div class="balloon-counter-badge">
+          <span>Balloons Popped:</span>
+          <strong id="balloon-count">0</strong>
+        </div>
+        <h2 class="section-title heading-cinzel">Pop The Magic Balloons 🎈</h2>
+        <p class="section-desc">Tap floating balloons to release golden sparkles & heartwarming birthday wishes!</p>
+        <button id="balloons-next-btn" class="luxury-btn btn-gold margin-top-md glow-effect">
+          <span>Read My Letter</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 7: BIRTHDAY LETTER -->
+    <section id="screen-letter" class="screen">
+      <div class="screen-content letter-glass-card">
+        <div class="letter-header">
+          <div class="envelope-stamp">💌</div>
+          <h2 class="letter-heading heading-cinzel">To My Dearest Sister</h2>
+          <div class="letter-gold-line"></div>
+        </div>
+        
+        <div class="letter-body-wrapper">
+          <div id="typewriter-text" class="typewriter-text font-serif"></div>
+        </div>
+
+        <div class="letter-footer">
+          <button id="letter-skip-btn" class="text-btn">Reveal Full Letter</button>
+          <button id="letter-next-btn" class="luxury-btn btn-primary glow-effect">
+            <span>View Memory Vault</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 8: MEMORY GALLERY -->
+    <section id="screen-gallery" class="screen">
+      <div class="gallery-container">
+        <div class="gallery-header text-center">
+          <span class="golden-tag">Treasured Moments</span>
+          <h2 class="section-title heading-cinzel">Our Memory Vault ✨</h2>
+          <p class="section-desc">Hover over photos to tilt, or click to enlarge & relive the moment</p>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <div class="gallery-actions">
+          <button id="upload-photo-btn" class="luxury-btn btn-glass-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Add Custom Photo</span>
+          </button>
+          <input type="file" id="custom-photo-input" accept="image/*" style="display: none;">
+          
+          <button id="gallery-next-btn" class="luxury-btn btn-gold glow-effect">
+            <span>Unwrap Surprise Gift</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 9: GIFT BOX -->
+    <section id="screen-gift" class="screen">
+      <div class="screen-content gift-card glass-card text-center">
+        <span class="golden-tag">Special Delivery</span>
+        <h2 class="section-title heading-cinzel">🎁 Open Your Gift</h2>
+        <p class="section-desc">Tap the 3D box ribbon to untie your special birthday present!</p>
+
+        <div class="gift-box-wrapper" id="gift-box">
+          <div class="gift-box-container">
+            <div class="gift-lid">
+              <div class="gift-ribbon-v"></div>
+              <div class="gift-ribbon-h"></div>
+              <div class="gift-bow">
+                <span></span><span></span>
+              </div>
+            </div>
+            <div class="gift-body">
+              <div class="gift-ribbon-v"></div>
+              <div class="gift-ribbon-h"></div>
+            </div>
+            <div class="gift-glow"></div>
+            <div class="light-beam-burst"></div>
+          </div>
+        </div>
+
+        <div id="gift-message" class="gift-message hidden">
+          <div class="heart-burst">💖</div>
+          <h3 class="gift-quote font-serif">"You deserve all the happiness, joy, and unconditional love in the world."</h3>
+          <button id="gift-next-btn" class="luxury-btn btn-primary margin-top-md glow-effect">
+            <span>Grand Finale</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 10: FINAL SURPRISE & THANK YOU -->
+    <section id="screen-final" class="screen">
+      <div class="screen-content final-card glass-card text-center">
+        <div class="sparkle-crown">✨👑✨</div>
+        <h1 class="final-heading heading-cinzel gold-shimmer">To The Best Sister In The World</h1>
+        
+        <div class="final-poem font-serif">
+          <p>The best sister deserves the best birthday.</p>
+          <p>Thank you for being my guide,</p>
+          <p>my inspiration,</p>
+          <p>my biggest supporter,</p>
+          <p>and my true best friend.</p>
+        </div>
+
+        <div class="final-signature">
+          <h2 class="signature-title heading-cinzel">Happy Birthday ❤️</h2>
+          <p class="signature-sub">Love always,</p>
+          <p class="signature-author font-script">Your Loving Brother</p>
+        </div>
+
+        <div class="final-controls">
+          <button id="replay-btn" class="luxury-btn btn-glass-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            <span>Replay Surprise</span>
+          </button>
+          <button id="fireworks-burst-btn" class="luxury-btn btn-primary glow-effect">
+            <span>Launch Mega Fireworks 🎉</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Photo Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content glass-card">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close Lightbox">&times;</button>
+      <div class="lightbox-image-wrapper">
+        <img id="lightbox-img" src="" alt="Enlarged Memory">
+      </div>
+      <div class="lightbox-caption-wrapper">
+        <h3 id="lightbox-title" class="heading-cinzel"></h3>
+        <p id="lightbox-desc" class="font-serif"></p>
+        <div class="lightbox-actions">
+          <button id="lightbox-like-btn" class="like-btn">
+            <span class="heart-icon">❤️</span> <span id="like-count">100</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
